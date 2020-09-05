@@ -1,0 +1,35 @@
+{
+  "name": "form-admin-front",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --debug",
+    "build": "vite build --debug"
+  },
+  "dependencies": {
+    "destyle.css": "^1.0.15",
+    "remixicon": "^2.5.0",
+    "vue": "^3.0.0-beta.15",
+    "vue-router": "^4.0.0-beta.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "@vue/compiler-sfc": "^3.0.0-beta.15",
+    "eslint": "^7.0.0-rc.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-vue": "^7.0.0-beta.3",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "sass": "^1.26.10",
+    "typescript": "^4.0.2",
+    "vite": "^1.0.0-beta.3"
+  }
+}
