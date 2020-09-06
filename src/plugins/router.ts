@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import FormListPage from '../views/formList/FormListPage.vue'
 import MarketoSettingPage from '../views/marketoSetting/MarketoSettingPage.vue'
+import FormBuilderPage from '../views/formBuilder/FormBuilderPage.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,6 +13,11 @@ const routes: RouteRecordRaw[] = [
     path: '/marketo-setting',
     name: 'marketo-setting',
     component: MarketoSettingPage
+  },
+  {
+    path: '/forms/:formId/builder',
+    name: 'form-builder',
+    component: FormBuilderPage
   }
 ]
 

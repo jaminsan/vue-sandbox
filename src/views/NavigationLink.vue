@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="to" v-slot="{ href, route, navigate, isActive, isExactActive }">
-    <li :class="isExactActive && 'linkSelected'">
+  <router-link :to="to" v-slot="{ href, navigate, isActive }">
+    <li :class="{ 'linkSelected': isActive }">
       <a :href="href" @click="navigate">
         <i class="ri-profile-line"></i><span>{{ label }}</span>
       </a>
@@ -8,7 +8,7 @@
   </router-link>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from 'vue'
 
 export default defineComponent({

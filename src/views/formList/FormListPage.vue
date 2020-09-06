@@ -1,8 +1,8 @@
 <template>
   <div class="header container">すべてのフォーム</div>
   <ul class="formList container">
-    <template v-for="form in formList">
-      <form-list-item :key="form.id" :form="form"/>
+    <template v-for="form in formList" :key="form.id">
+      <form-list-item :form="form" @click-form-edit="handleClickFormEdit"/>
     </template>
   </ul>
 </template>
@@ -11,6 +11,7 @@
 import {defineComponent} from 'vue'
 import FormListItem from './Form.vue';
 import Form from "./Form.ts";
+import {useRouter} from 'vue-router'
 
 export default defineComponent({
   components: {
@@ -18,8 +19,10 @@ export default defineComponent({
   },
 
   async setup() {
+    const router = useRouter()
+
     async function fetchFormList(): Promise<Form[]> {
-      await new Promise(r => setTimeout(r, 3000))
+      await new Promise(r => setTimeout(r, 1500))
 
       return [
         new Form('id1', 'フォーム1', 'enable', '2020-09-05'),
@@ -28,11 +31,17 @@ export default defineComponent({
       ]
     }
 
+    function handleClickFormEdit(form: Form): void {
+      router.push({name: 'form-builder', params: {formId: form.id}})
+    }
+
     // FIXME: template で 'Unresolved variable or type formList' の警告が出る。setup についてる async を消すと警告消える。
     const formList = await fetchFormList()
 
     return {
-      formList
+      formList,
+
+      handleClickFormEdit
     }
   }
 })

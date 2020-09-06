@@ -12,16 +12,14 @@
       </template>
     </suspense>
   </div>
-
 </template>
 
 <script>
 import {defineComponent, Suspense} from 'vue'
 import Navigation from "./views/Navigation.vue"
-import Loading from "./component/Loading.vue";
+import Loading from "./components/Loading.vue";
 
 export default defineComponent({
-  name: 'App',
   components: {
     Navigation,
     Suspense,
@@ -31,10 +29,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .loading {
-    margin: 15px auto;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-  }
+.loading {
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
 </style>

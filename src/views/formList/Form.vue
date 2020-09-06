@@ -9,7 +9,7 @@
     <div class="form__createdDate">
       <span>作成日：{{ formatDate(form.createdDate) }}</span>
     </div>
-    <div class="form__editAction" v-if="hover">
+    <div class="form__editAction" v-if="hover" @click="handleFormEditAction">
       <i class="ri-pencil-line"></i>
       <b>編集</b>
     </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
+import {defineComponent, ref, SetupContext} from 'vue'
 import Form from "./Form.ts";
 
 // FIXME: 型推論
@@ -49,7 +49,7 @@ export default defineComponent({
     form: Form
   },
 
-  setup(props: Props) {
+  setup(props: Props, context: SetupContext) {
     const hover = ref(false)
     const formStatusColor = ref(props.form.isEnabled ? '#24A68A' : '#747474')
     const hoverMoreAction = ref(false)
@@ -76,6 +76,10 @@ export default defineComponent({
       return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
     }
 
+    function handleFormEditAction() {
+      context.emit('click-form-edit', props.form)
+    }
+
     return {
       form: props.form,
       formatDate,
@@ -91,7 +95,9 @@ export default defineComponent({
       formStatusStyle: {
         // FIXME: https://github.com/vuejs/rfcs/pull/182
         '--formStatusColor': formStatusColor,
-      }
+      },
+
+      handleFormEditAction
     }
   }
 })
