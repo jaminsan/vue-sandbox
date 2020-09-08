@@ -71,11 +71,12 @@ export default defineComponent({
 
   button {
     height: 31px;
+    line-height: 31px;
+    font-size: 14px;
     background: #24A68A;
     border: #24A68A;
     border-radius: 2px;
     color: #ffffff;
-    font-size: 14px;
     padding: 0 15px;
   }
 }

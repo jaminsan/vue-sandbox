@@ -7,13 +7,24 @@
       <button>保存</button>
     </div>
   </div>
+  <div class="builderWrapper">
+    <form-component-template></form-component-template>
+    <form-canvas></form-canvas>
+  </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, SetupContext} from 'vue'
 import {useRoute} from 'vue-router'
+import FormComponentTemplate from './FormComponentTemplate.vue'
+import FormCanvas from './FormCanvas.vue'
 
 export default defineComponent({
+  components: {
+    FormComponentTemplate,
+    FormCanvas
+  },
+
   setup(props, context: SetupContext) {
     const route = useRoute()
 
@@ -54,7 +65,17 @@ $header-height: 30px;
       color: #ffffff;
       font-size: 14px;
       padding: 0 14px;
+      line-height: $header-height;
     }
   }
+}
+
+.builderWrapper {
+  margin: 15px 10vw 0 10vw;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
 }
 </style>

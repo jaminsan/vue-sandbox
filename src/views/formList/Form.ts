@@ -7,10 +7,10 @@ export default class Form {
   createdDate;
 
   constructor(id: string, name: string, status: FormStatus, createdDate: string) {
-    this.id = id;
-    this.name = name;
-    this.status = status;
-    this.createdDate = createdDate;
+    this.id = id
+    this.name = name
+    this.status = status
+    this.createdDate = createdDate
   }
 
   get isEnabled() {
