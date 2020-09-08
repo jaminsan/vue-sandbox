@@ -5,9 +5,9 @@
                ghostClass="sortable-ghost-component"
                chosenClass="sortable-chosen-component"
                :list="components"
-               :onAdd="handleOnAddComponent"
-               :onStart="handleOnStartMoveComponent"
-               :onEnd="handleOnDragEndComponent"
+               @add="handleOnAddComponent"
+               @start="handleOnStartMoveComponent"
+               @end="handleOnDragEndComponent"
     >
       <li v-for="(component, index) in components"
           :class="{'selected': index === indexSelectedComponent}"
