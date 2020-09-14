@@ -11,7 +11,7 @@
                  ghostClass="sortable-ghost-template"
                  chosenClass="sortable-chosen-template"
       >
-        <li v-for="template in templates" :key="template.id">
+        <li v-for="template in templates" :key="template.type">
           <i :class="template.icon"></i>
           <span>{{ template.name }}</span>
         </li>
@@ -23,7 +23,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {VueDraggableNext as Draggable} from 'vue-draggable-next'
-import FormComponentTemplate from './FormComponentTemplate.ts'
+import {formComponentTypes} from "./formComponent/FormComponentType";
+import FormComponentMetaUtil from "./formComponent/FormComponentMeta";
 
 export default defineComponent({
   components: {
@@ -31,18 +32,7 @@ export default defineComponent({
   },
 
   setup() {
-    const templates = [
-      new FormComponentTemplate('id1', '名前', 'ri-user-line'),
-      new FormComponentTemplate('id2', '企業名', 'ri-building-4-line'),
-      new FormComponentTemplate('id3', '電話番号', 'ri-phone-line'),
-      new FormComponentTemplate('id4', 'メール', 'ri-mail-line'),
-      new FormComponentTemplate('id5', '日付', 'ri-calendar-line'),
-      new FormComponentTemplate('id6', '時間', 'ri-time-line'),
-      new FormComponentTemplate('id7', '意思確認', 'ri-checkbox-line'),
-      new FormComponentTemplate('id8', 'ドロップダウン', 'ri-list-check'),
-      new FormComponentTemplate('id9', 'ラジオボタン', 'ri-radio-button-line'),
-      new FormComponentTemplate('id10', '数値', 'ri-list-ordered'),
-    ]
+    const templates = formComponentTypes.map(FormComponentMetaUtil.valueOf)
 
     return {
       templates

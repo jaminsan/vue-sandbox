@@ -10,27 +10,32 @@
                @end="handleOnDragEndComponent"
     >
       <li v-for="(component, index) in components"
+          :key="index"
           :class="{'selected': index === indexSelectedComponent}"
           @click="handleClickComponent(index)"
       >
-        {{ component.name }}
+        <div class="overlap"></div>
+        <div class="formComponentWrapper"></div>
+        <form-component :type="component.type"></form-component>
       </li>
     </draggable>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
+import {defineComponent, ref, reactive} from 'vue'
 import {VueDraggableNext as Draggable} from 'vue-draggable-next'
-import FormComponentTemplate from './FormComponentTemplate.ts'
+import {FormComponentMeta} from "./formComponent/FormComponentMeta";
+import FormComponent from "./formComponent/FormComponent.vue";
 
 export default defineComponent({
   components: {
-    Draggable
+    Draggable,
+    FormComponent
   },
 
   setup() {
-    const components: FormComponentTemplate[] = []
+    const components = reactive<FormComponentMeta[]>([])
     const indexSelectedComponent = ref(-1)
 
     function handleClickComponent(index: number) {
@@ -85,6 +90,8 @@ export default defineComponent({
       margin: 15px 15px;
       border: 1px solid #ffffff;
 
+      position: relative;
+
       &:hover {
         border: 1px dashed #ccc;
         cursor: pointer;
@@ -94,6 +101,10 @@ export default defineComponent({
         border: 1px solid #90d8c8;
         background: #f9fffe;
       }
+    }
+
+    .sortable-chosen-component.sortable-ghost-component {
+      visibility: hidden;
     }
   }
 }
